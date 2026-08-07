@@ -1,0 +1,5 @@
+# Code + all selected local/external weights; official GAVE2 data is mounted
+# at runtime and is intentionally never embedded.
+FROM choiclara9/gave2-kirby:prelim-7.95236-e2e-main
+
+COPY weights/ /weights/
