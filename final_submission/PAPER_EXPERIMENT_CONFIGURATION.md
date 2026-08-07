@@ -10,8 +10,7 @@ the team's final terminology and style edits.
 We used the official GAVE2 training set for local model development. It
 contains 50 cases (`g_001`–`g_050`), each comprising a 1536 × 1024 colour
 fundus photograph (CFP), retinal region-of-interest (ROI) mask, RGB
-artery/vessel/vein annotation, and registered early- and late-phase FFA
-images. Task 3 additionally used the supplied training biomarker text files.
+artery/vessel/vein annotation, and the supplied early- and late-phase FFA images. Task 3 additionally used the supplied training biomarker text files.
 The preliminary cases (`g_051`–`g_100`) were used only for unlabeled
 inference and public leaderboard evaluation; their ground-truth labels were
 never accessed.
