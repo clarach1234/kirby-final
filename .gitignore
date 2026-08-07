@@ -1,0 +1,23 @@
+# Protected challenge material and generated artifacts must never be committed.
+data/
+weights/
+review_inputs/
+artifacts/
+output/
+outputs/
+__training/
+wandb/
+*.pth
+*.pt
+*.ckpt
+*.zip
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.docx
+__pycache__/
+*.py[cod]
+.env
+.venv/
+venv/

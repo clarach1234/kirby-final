@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "notes": [
+    "Local .pth files are inference state_dict weights; optimizer state is not required.",
+    "Weights are mounted at runtime and are not embedded in the public Docker image.",
+    "R2-V2 is fetched from its official release because redistribution terms are not stated in its repository."
+  ],
+  "local_weights": [
+    {"task": 1, "fold": 0, "path": "task1/fold_0.pth", "sha256": "da0627160291b6208ff2c31c19490fef4cf80e9a51516d8e1f11a19d100d38ef", "architecture": "RRWNet", "input_channels": 3, "base_channels": 16, "iterations": 5, "best_iteration": 53160},
+    {"task": 1, "fold": 1, "path": "task1/fold_1.pth", "sha256": "9e32b0a9b2dfd596493217a3acaab83bd9c3ce67942d097ab61c234345ba0ff0", "architecture": "RRWNet", "input_channels": 3, "base_channels": 16, "iterations": 5, "best_iteration": 52760},
+    {"task": 1, "fold": 2, "path": "task1/fold_2.pth", "sha256": "e796c8666acfb095d40a38cd7dc983980fd822109a1a1160b27932d3ebb62951", "architecture": "RRWNet", "input_channels": 3, "base_channels": 16, "iterations": 5, "best_iteration": 67560},
+    {"task": 1, "fold": 3, "path": "task1/fold_3.pth", "sha256": "3949796120f8c7bcde57f39315878bd190c49d31d6146491a18828a515a6f29f", "architecture": "RRWNet", "input_channels": 3, "base_channels": 16, "iterations": 5, "best_iteration": 63800},
+    {"task": 1, "fold": 4, "path": "task1/fold_4.pth", "sha256": "990cccce3f003bec2bc9d76314d32c5c86f7de3b91c6fe54ca5cef938221f2eb", "architecture": "RRWNet", "input_channels": 3, "base_channels": 16, "iterations": 5, "best_iteration": 62840},
+    {"task": 2, "fold": 0, "path": "task2/fold_0.pth", "sha256": "618ffa649da2c3c01a46ae785f2c1e2fc9873c1ae5da1c7c7187bfeb78298209", "architecture": "CMRRWNet", "input_channels": 5, "base_channels": 16, "iterations": 1, "best_iteration": 2880},
+    {"task": 2, "fold": 1, "path": "task2/fold_1.pth", "sha256": "7d197723a5b805bbd5fed24d16ba87b1123ae3d96cac99aca0310251c79338e6", "architecture": "CMRRWNet", "input_channels": 5, "base_channels": 16, "iterations": 1, "best_iteration": 5508},
+    {"task": 2, "fold": 2, "path": "task2/fold_2.pth", "sha256": "d9a0f1f41ff3bd6bbda051400100d152601ccd385e30308f291460488bf0fb63", "architecture": "CMRRWNet", "input_channels": 5, "base_channels": 16, "iterations": 1, "best_iteration": 6300},
+    {"task": 3, "source": "E", "fold": 0, "path": "task3/task2_e_topology_fold0.pth", "sha256": "38a110905bc7814916e291f3ea86d8b24f6ba146452732cf83a4e1adc6843bbe", "architecture": "CMRRWNet", "input_channels": 5, "base_channels": 16, "iterations": 1},
+    {"task": 3, "source": "E", "fold": 1, "path": "task3/task2_e_baseline_fold1.pth", "sha256": "97ee45ff657db426ef5c38ec3ef0930790fddb68076a31ddc03f8030edc57786", "architecture": "CMRRWNet", "input_channels": 5, "base_channels": 16, "iterations": 1},
+    {"task": 3, "source": "E", "fold": 2, "path": "task3/task2_e_baseline_fold2.pth", "sha256": "3660f2a4de0246afcb4e3eb6f2250a77ed02c7b82210f3dff91cfa0fe5127049", "architecture": "CMRRWNet", "input_channels": 5, "base_channels": 16, "iterations": 1}
+  ],
+  "external_weights": [
+    {
+      "name": "R2-V2 AV",
+      "path": "external/r2v2",
+      "repository": "https://github.com/j-morano/R2-V2",
+      "commit": "7f6a8ea7a51782b1e0f89723a9ec137ba0a29913",
+      "runtime": "PyTorch 2.8.0, CUDA 12.8, cuDNN 9 (companion container)",
+      "release_url": "https://github.com/j-morano/R2-V2/releases/download/v1/av.pth",
+      "sha256": "74d425afb714384cb3f4d5db9cc852c1ea6d7552e46c866e29a3777db12b9d80",
+      "configuration_url": "https://github.com/j-morano/R2-V2/releases/download/v1/av_config.json",
+      "configuration_sha256": "8c4bb170f0f4df5cc21ce6929ac1e6e738c82404fe420310181974f572beff54"
+    },
+    {
+      "name": "R2-V2 source",
+      "path": "external/r2v2/source",
+      "repository": "https://github.com/j-morano/R2-V2",
+      "commit": "7f6a8ea7a51782b1e0f89723a9ec137ba0a29913",
+      "files": {
+        "infer.py": "cf757edba486546a2f571bb71804e302e97f332fcc98d7275ed64459b432b169",
+        "model.py": "202410a7104eef6d160524e9b8d693116bd1ab75aa9c133cdfb5757c495437ae",
+        "preprocessing.py": "1f5daea460f28cbda638618feee2ab4795e310f4d5986bd075b7172af259d92c",
+        "transformations.py": "a50081abe92d0292e99b5fd0cb4b98eebe355cb17ce8a71ce2eccc720563909c"
+      }
+    },
+    {
+      "name": "SegFormer optic disc/cup",
+      "path": "external/optic_disc",
+      "repository": "https://huggingface.co/pamixsun/segformer_for_optic_disc_cup_segmentation",
+      "revision": "e1698e9f52e24cb6a7b2fecab4688852b89f77ef",
+      "license": "Apache-2.0",
+      "files": {
+        "config.json": "e3639987b9b21f8726d8b8abad849b2366936ff5ed042c255ef14390243ef858",
+        "preprocessor_config.json": "b265f6d53be9b46b2d9f9a16c70cf7648196d57f31192f5bb67212031fea12ef",
+        "pytorch_model.bin": "1a1a4154b5a6d6abf4333a12c3903cc84a16d57da7c6d9eaffec3748c3e552e3"
+      }
+    }
+  ]
+}

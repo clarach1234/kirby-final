@@ -1,0 +1,14 @@
+FROM pytorch/pytorch:2.8.0-cuda12.8-cudnn9-runtime
+
+WORKDIR /workspace
+COPY material_review/requirements-r2v2.txt /tmp/requirements-r2v2.txt
+RUN python -m pip install --no-cache-dir -r /tmp/requirements-r2v2.txt
+COPY material_review/entrypoint-r2v2.sh /usr/local/bin/kirby-r2v2
+RUN chmod 0755 /usr/local/bin/kirby-r2v2
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    NVIDIA_VISIBLE_DEVICES=all \
+    NVIDIA_DRIVER_CAPABILITIES=compute,utility
+
+ENTRYPOINT ["/usr/local/bin/kirby-r2v2"]

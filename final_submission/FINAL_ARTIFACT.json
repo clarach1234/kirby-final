@@ -1,0 +1,18 @@
+{
+  "team": "kirby",
+  "artifact": "kirby_finalpush_t1reproR2G040_t2currentR_DcG_veinskel10OR_t3bestfield_compact_metric_equivalent.zip",
+  "submitted_at_kst": "2026-07-31T21:34:00+09:00",
+  "sha256": "4c19a97503668ef003c992edcbf76ade644c40903b683394347c0214db51306c",
+  "size_bytes": 19178103,
+  "entries": 150,
+  "preliminary_rank": 7,
+  "scores": {
+    "overall": 7.95236,
+    "task1": 8.19815,
+    "task2": 8.25683,
+    "task3": 7.525
+  },
+  "task1": "R2-V2 artery/vein + equal five-fold kirby vessel at 0.40",
+  "task2": "endpoint-Db R/B + Dc G + additive veinskel10 B support",
+  "task3": "Source-E extraction + fixed global field calibration"
+}

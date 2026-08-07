@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "exact_reconstruction_inputs": [
+    {
+      "mount_path": "/artifacts/reproducible_base.zip",
+      "local_reference_name": "kirby_repro_t1R2kirbyG040fold0i53160_t2endpointRB_DcG_t3bestfield_compact_metric_equivalent.zip",
+      "sha256": "e00619d313ab7520c24ec87fd97538a2f41145f11c28d8457a4d20461c14dda1",
+      "purpose": "Fully weight-reproducible Task 1, current R/Dc-G Task 2, and fixed-field Task 3 base"
+    },
+    {
+      "mount_path": "/artifacts/veinskel10_source.zip",
+      "local_reference_name": "kirby_scorepush_t1eq025_t2Db_veinskel10_t3E_fdstrong.zip",
+      "sha256": "9b668305a1eb5f45854210753981adde607ee0368eeab00f0edbefe02bf116e8",
+      "purpose": "Fixed Task-2 veinskel10 B-channel source"
+    }
+  ],
+  "expected_output": {
+    "filename": "kirby.zip",
+    "sha256": "4c19a97503668ef003c992edcbf76ade644c40903b683394347c0214db51306c",
+    "size_bytes": 19178103,
+    "entries": 150,
+    "leaderboard": {
+      "rank": 7,
+      "overall": 7.95236,
+      "task1": 8.19815,
+      "task2": 8.25683,
+      "task3": 7.525
+    }
+  }
+}

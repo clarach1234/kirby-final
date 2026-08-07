@@ -1,0 +1,13 @@
+.git
+__training
+data
+r2v2_external
+*predictions*
+*submission*
+*.pth
+*.pt
+*.zip
+*.docx
+*.pdf
+wandb
+__pycache__

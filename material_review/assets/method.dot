@@ -1,0 +1,70 @@
+digraph GAVE2_Kirby {
+  graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.32", ranksep="0.55", fontname="DejaVu Sans", fontsize=11];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=10, color="#36506c", fillcolor="#f6f9fc", margin="0.12,0.08"];
+  edge [fontname="DejaVu Sans", fontsize=8.5, color="#506784", arrowsize=0.65];
+
+  subgraph cluster_inputs {
+    label="Official GAVE2 inputs"; color="#a8b8c8"; style="rounded";
+    cfp [label="CFP RGB\n1536 x 1024", fillcolor="#e9f3ff"];
+    ffae [label="Early FFA\nfirst channel", fillcolor="#fff4e5"];
+    ffal [label="Late FFA\nfirst channel", fillcolor="#fff4e5"];
+    roi [label="ROI mask", fillcolor="#f1f1f1"];
+  }
+
+  subgraph cluster_t1 {
+    label="Task 1: CFP-only artery / vessel / vein segmentation"; color="#4e86c4"; style="rounded";
+    r2 [label="Public R2-V2 AV specialist\npinned commit + AV weight\n8-view rotation/flip TTA", fillcolor="#dcecff"];
+    rrw [label="Kirby RRWNet vessel specialist\n5 folds, equal probability mean\n5 recurrent refinements", fillcolor="#dcecff"];
+    t1mix [label="Fixed channel composition\nR = R2-V2 artery\nG = kirby vessel @ 0.40\nB = R2-V2 vein", fillcolor="#c6e2ff"];
+    t1out [label="Task 1 RGB PNG\nmetric-equivalent {0,1,255}", fillcolor="#c8f0db"];
+  }
+
+  subgraph cluster_t2 {
+    label="Task 2: multimodal segmentation and topology refinement"; color="#c47b35"; style="rounded";
+    cm [label="Kirby CMRRWNet\nCFP + early/late FFA (5 channels)\n3 topology-converged folds\nno TTA", fillcolor="#ffead2"];
+    expert [label="Db: per-fold G=max(R,G,B), then mean\nDc: raw fold mean\nendpoint bridge on Db\nR/B = endpoint-Db, G = Dc", fillcolor="#ffe0b8"];
+    skel [label="Vein topology support\nB_final = B_current OR B_veinskel10\nadd 527,170; delete 0", fillcolor="#ffd7a1"];
+    t2out [label="Task 2 RGB PNG\nmetric-equivalent {0,1,255}", fillcolor="#c8f0db"];
+  }
+
+  subgraph cluster_t3 {
+    label="Task 3: deterministic biomarker extraction and global calibration"; color="#8267b4"; style="rounded";
+    ebranch [label="Task-3 source E\ntopology fold 0 + baseline folds 1/2\nequal mean, no TTA", fillcolor="#eee6ff"];
+    od [label="Public SegFormer optic disc/cup\npinned revision + weight\ndisc/cup union mask", fillcolor="#eee6ff"];
+    bio [label="Optic-disc-aware measurements\nCRAE, CRVE, AVR, densities,\nartery/vein fractal dimensions", fillcolor="#eee6ff"];
+    cal [label="One fixed rule for all images\nq035: AVR/vein density\nraw E: CRVE/artery density\nfixed offsets: A/V FD\nCRAE = AVR x CRVE", fillcolor="#e3d5ff"];
+    t3out [label="Task 3 TXT\n7 finite values", fillcolor="#c8f0db"];
+  }
+
+  zip [label="Final deterministic package\n150 entries, g_051 ... g_100\nSHA-256 4c19...06c\nOverall 7.95236 / Rank 7", fillcolor="#b7e6c9", color="#2f7d4d", penwidth=1.5];
+
+  cfp -> r2 [label="CFP only"];
+  roi -> r2;
+  cfp -> rrw [label="CFP only"];
+  roi -> rrw;
+  r2 -> t1mix [label="R, B"];
+  rrw -> t1mix [label="G"];
+  t1mix -> t1out;
+
+  cfp -> cm;
+  ffae -> cm;
+  ffal -> cm;
+  roi -> cm;
+  cm -> expert [label="probability maps"];
+  expert -> skel;
+  skel -> t2out;
+
+  cfp -> ebranch;
+  ffae -> ebranch;
+  ffal -> ebranch;
+  roi -> ebranch;
+  cfp -> od;
+  ebranch -> bio [label="E A/V maps"];
+  od -> bio [label="optic-disc mask"];
+  bio -> cal;
+  cal -> t3out;
+
+  t1out -> zip;
+  t2out -> zip;
+  t3out -> zip;
+}
