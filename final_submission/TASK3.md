@@ -38,4 +38,5 @@ preliminary predictions is preserved.
 
 - Biomarker extraction: [`get_biomarker_kaggle.py`](../get_biomarker_kaggle.py)
 - Optic-disc inference: [`material_review/optic_disc_segformer.py`](../material_review/optic_disc_segformer.py)
+- Original mask generation, overlays, and QC workflow: [`material_review/OPTIC_DISC_MASKS.md`](../material_review/OPTIC_DISC_MASKS.md)
 - Calibration and final text serialization: `build_final_task3()` in [`material_review/pipeline.py`](../material_review/pipeline.py)
