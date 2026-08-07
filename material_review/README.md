@@ -28,6 +28,9 @@ The challenge data, pretrained weights, local checkpoints, and generated
 outputs are not committed to the public repository. They are mounted at run
 time and verified against `weights_manifest.json` before inference.
 
+The standalone code and QC record for the REFUGE-based optic-disc masks used
+by Task 3 are documented in [`OPTIC_DISC_MASKS.md`](OPTIC_DISC_MASKS.md).
+
 ## Expected mounted files
 
 ```text
